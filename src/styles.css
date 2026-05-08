@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
+
+:root {
+  color-scheme: dark;
+  background: #142621;
+  color: #f2e6c0;
+  font-family: "Space Grotesk", "Helvetica Neue", "Neue Haas Grotesk Text", "Arial Nova", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #142621;
+}
+
+.construction-page {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  padding: clamp(20px, 6vw, 64px);
+  background: #142621;
+}
+
+.construction-lockup {
+  display: grid;
+  width: min(100%, 860px);
+  justify-items: center;
+  gap: clamp(18px, 2.25vw, 29px);
+  transform: translateY(3vh);
+}
+
+.construction-logo {
+  display: block;
+  width: clamp(280px, 73.5vw, 756px);
+  max-width: 100%;
+  height: auto;
+}
+
+.construction-line {
+  width: min(100%, 720px);
+  margin: 0;
+  color: #f2e6c0;
+  font-family: "Space Grotesk", "Helvetica Neue", "Neue Haas Grotesk Text", "Arial Nova", Arial, sans-serif;
+  font-size: 19.5px;
+  font-weight: 300;
+  line-height: 1.28;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: balance;
+  text-rendering: geometricPrecision;
+  white-space: nowrap;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+.scramble-text {
+  display: inline-grid;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.scramble-text__sizer {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.scramble-text__visible {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.scramble-text__character {
+  display: inline-block;
+  text-align: center;
+  color: #f2e6c0;
+  font-variant-numeric: tabular-nums;
+  will-change: contents;
+}
+
+@media (max-width: 520px) {
+  .construction-page {
+    padding-inline: 28px;
+  }
+
+  .construction-logo {
+    width: 100%;
+  }
+
+  .construction-line {
+    width: 100%;
+    font-size: clamp(8px, 2.65vw, 18.67px);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

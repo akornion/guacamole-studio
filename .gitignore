@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+
+# Local helper experiments not used by the Guacamole Studio site.
+native-helper/
+scripts/
+wrapper/
