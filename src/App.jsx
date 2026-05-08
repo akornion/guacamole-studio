@@ -163,7 +163,7 @@ function App() {
         A digital studio for ideas that needed a stranger kitchen. The kitchen is still being built.
       </p>
       <section className="construction-lockup" aria-label="Guacamole Studio under construction">
-        <img className="construction-logo" src={gsLogo} alt="Guacamole Studio" />
+        <img className="construction-logo" src={gsLogo} alt="Guacamole Studio" draggable="false" />
         <h1 className="construction-line">
           <ScrambleText text={activePhrase.text} longestText={longestText} />
         </h1>

@@ -48,6 +48,10 @@ body {
   max-width: 100%;
   height: auto;
   flex: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
 }
 
 .construction-line {
