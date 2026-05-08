@@ -168,6 +168,7 @@ function App() {
           <ScrambleText text={activePhrase.text} longestText={longestText} />
         </h1>
       </section>
+      <small className="copyright">© 2026 Guacamole Studio™</small>
     </main>
   );
 }
