@@ -34,10 +34,12 @@ body {
 
 .construction-lockup {
   display: grid;
-  width: min(100%, 860px);
+  width: 100%;
+  max-width: 860px;
   justify-items: center;
   gap: clamp(18px, 2.25vw, 29px);
   transform: translateY(3vh);
+  contain: layout;
 }
 
 .construction-logo {
@@ -45,11 +47,14 @@ body {
   width: clamp(280px, 73.5vw, 756px);
   max-width: 100%;
   height: auto;
+  flex: none;
 }
 
 .construction-line {
   width: min(100%, 720px);
+  min-width: 0;
   margin: 0;
+  overflow: hidden;
   color: #f2e6c0;
   font-family: "Space Grotesk", "Helvetica Neue", "Neue Haas Grotesk Text", "Arial Nova", Arial, sans-serif;
   font-size: 19.5px;
@@ -82,6 +87,7 @@ body {
 .scramble-text {
   display: inline-grid;
   max-width: 100%;
+  min-width: 0;
   vertical-align: top;
 }
 
@@ -92,6 +98,7 @@ body {
 
 .scramble-text__visible {
   grid-area: 1 / 1;
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -106,6 +113,11 @@ body {
 @media (max-width: 520px) {
   .construction-page {
     padding-inline: 28px;
+  }
+
+  .construction-lockup {
+    width: calc(100vw - 56px);
+    max-width: calc(100vw - 56px);
   }
 
   .construction-logo {
