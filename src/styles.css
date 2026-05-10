@@ -5,6 +5,15 @@
   background: #142621;
   color: #f2e6c0;
   font-family: "Space Grotesk", "Helvetica Neue", "Neue Haas Grotesk Text", "Arial Nova", Arial, sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --logo-width: clamp(280px, 73.5vw, 756px);
+  --intro-draw-duration: 1500ms;
+  --intro-compose-duration: 1120ms;
+  --intro-total-duration: 2620ms;
+  --intro-icon-start-x: -139.5px;
+  --intro-ease: cubic-bezier(0.32, 0, 0.68, 1);
 }
 
 * {
@@ -44,7 +53,7 @@ body {
 
 .construction-logo {
   display: block;
-  width: clamp(280px, 73.5vw, 756px);
+  width: var(--logo-width);
   max-width: 100%;
   height: auto;
   flex: none;
@@ -52,6 +61,18 @@ body {
   user-select: none;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
+}
+
+.logo-reveal {
+  position: relative;
+  width: var(--logo-width);
+  max-width: 100%;
+  aspect-ratio: 1260 / 141;
+  overflow: visible;
+}
+
+.logo-reveal .intro-logo-compose {
+  width: 100%;
 }
 
 .construction-line {
@@ -63,6 +84,7 @@ body {
   font-family: "Space Grotesk", "Helvetica Neue", "Neue Haas Grotesk Text", "Arial Nova", Arial, sans-serif;
   font-size: 19.5px;
   font-weight: 300;
+  font-synthesis: none;
   line-height: 1.28;
   letter-spacing: 0;
   text-align: center;
@@ -73,6 +95,12 @@ body {
     "kern" 1,
     "liga" 1,
     "calt" 1;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.construction-line--visible {
+  animation: taglineReveal 560ms cubic-bezier(0.32, 0, 0.2, 1) forwards;
 }
 
 .copyright {
@@ -83,6 +111,7 @@ body {
   font-family: "Space Grotesk", "Helvetica Neue", "Neue Haas Grotesk Text", "Arial Nova", Arial, sans-serif;
   font-size: 11px;
   font-weight: 300;
+  font-synthesis: none;
   letter-spacing: 0.02em;
   line-height: 1.2;
   user-select: none;
@@ -127,9 +156,99 @@ body {
   will-change: contents;
 }
 
+.intro-logo-compose {
+  display: block;
+  width: var(--logo-width);
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.intro-draw-icon__path {
+  fill: none;
+  stroke: #f2e6c0;
+  stroke-width: 16.3391;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 0 1;
+  stroke-dashoffset: 0;
+}
+
+.intro-lockup-motion,
+.intro-wordmark {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.intro-lockup-motion {
+  transform: translateX(var(--intro-icon-start-x));
+  animation: introLockupSettle var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
+}
+
+.intro-wordmark--guacamole {
+  transform: translateX(656.5px);
+  animation: introGuacamoleReveal var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
+}
+
+.intro-wordmark--studio {
+  transform: translateX(-380px);
+  animation: introStudioReveal var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
+}
+
+@keyframes introLockupSettle {
+  from {
+    transform: translateX(var(--intro-icon-start-x));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes introGuacamoleReveal {
+  from {
+    transform: translateX(656.5px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes introStudioReveal {
+  from {
+    transform: translateX(-380px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes taglineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 520px) {
   .construction-page {
     padding-inline: 28px;
+  }
+
+  .intro-logo-compose {
+    width: 100%;
   }
 
   .construction-lockup {
