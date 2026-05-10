@@ -198,12 +198,8 @@ function IntroLogo({ onComplete }) {
   return (
     <>
       <div className="intro-wordmark-stage" aria-hidden="true">
-        <span className="intro-wordmark-mask intro-wordmark-mask--guacamole">
-          <img className="intro-wordmark-image intro-wordmark-image--guacamole" src={gsLogo} alt="" draggable="false" />
-        </span>
-        <span className="intro-wordmark-mask intro-wordmark-mask--studio">
-          <img className="intro-wordmark-image intro-wordmark-image--studio" src={gsLogo} alt="" draggable="false" />
-        </span>
+        <img className="intro-wordmark-image intro-wordmark-image--guacamole" src={gsLogo} alt="" draggable="false" />
+        <img className="intro-wordmark-image intro-wordmark-image--studio" src={gsLogo} alt="" draggable="false" />
       </div>
       <svg className="intro-logo-compose" viewBox="0 0 1260 141" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <g className="intro-lockup-motion">

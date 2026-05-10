@@ -175,59 +175,39 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
+  opacity: 0;
   transform: translate3d(-11.0714285714%, 0, 0);
-  animation: introWordmarkStageSettle var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
+  animation:
+    introWordmarkVisible 1ms linear var(--intro-draw-duration) forwards,
+    introWordmarkStageSettle var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
   pointer-events: none;
   user-select: none;
   will-change: transform;
-}
-
-.intro-wordmark-mask {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  overflow: hidden;
-  opacity: 0;
-  animation: introWordmarkVisible 1ms linear var(--intro-draw-duration) forwards;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-.intro-wordmark-mask--guacamole {
-  left: 0;
-  width: 52.1031746032%;
-}
-
-.intro-wordmark-mask--studio {
-  left: 69.8412698413%;
-  width: 30.1587301587%;
 }
 
 .intro-wordmark-image {
   position: absolute;
+  inset: 0;
   top: 0;
   display: block;
+  width: 100%;
   max-width: none;
-  height: 100%;
+  height: auto;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
-  will-change: transform;
+  will-change: clip-path;
 }
 
 .intro-wordmark-image--guacamole {
-  left: 0;
-  width: 191.926885%;
-  transform: translate3d(52.1031746032%, 0, 0);
-  animation: introGuacamoleReveal var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
+  clip-path: inset(0 47.8968253968% 0 52.1031746032%);
+  animation: introGuacamoleMaskReveal var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
 }
 
 .intro-wordmark-image--studio {
-  left: -231.578947%;
-  width: 331.578947%;
-  transform: translate3d(-30.1587301587%, 0, 0);
-  animation: introStudioReveal var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
+  clip-path: inset(0 30.1587301587% 0 69.8412698413%);
+  animation: introStudioMaskReveal var(--intro-compose-duration) var(--intro-ease) var(--intro-draw-duration) forwards;
 }
 
 .intro-draw-icon__path {
@@ -277,23 +257,23 @@ body {
   }
 }
 
-@keyframes introGuacamoleReveal {
+@keyframes introGuacamoleMaskReveal {
   from {
-    transform: translate3d(52.1031746032%, 0, 0);
+    clip-path: inset(0 47.8968253968% 0 52.1031746032%);
   }
 
   to {
-    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 47.8968253968% 0 0);
   }
 }
 
-@keyframes introStudioReveal {
+@keyframes introStudioMaskReveal {
   from {
-    transform: translate3d(-30.1587301587%, 0, 0);
+    clip-path: inset(0 30.1587301587% 0 69.8412698413%);
   }
 
   to {
-    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 69.8412698413%);
   }
 }
 
