@@ -243,17 +243,20 @@ function ConstructionPage({ isIntroComplete, onIntroComplete, shouldUseIntroLogo
   }, [activePhrase.holdMs, isIntroComplete, phraseIndex]);
 
   return (
-    <main className="construction-page">
-      <p className="sr-only">
+    <main className="construction-page" aria-labelledby="page-title" aria-describedby="page-status">
+      <h1 id="page-title" className="sr-only">
+        Guacamole Studio
+      </h1>
+      <p id="page-status" className="sr-only">
         A digital studio for ideas that needed a stranger kitchen. The kitchen is still being built.
       </p>
-      <section className="construction-lockup" aria-label="Guacamole Studio under construction">
+      <section className="construction-lockup" aria-hidden="true">
         {shouldUseIntroLogo ? (
           <div className="logo-reveal">
             <IntroLogo onComplete={onIntroComplete} />
           </div>
         ) : (
-          <img className="construction-logo" src={gsLogo} alt="Guacamole Studio" draggable="false" />
+          <img className="construction-logo" src={gsLogo} alt="" draggable="false" />
         )}
         <h1 className={`construction-line${isIntroComplete ? " construction-line--visible" : ""}`}>
           <ScrambleText text={activePhrase.text} longestText={longestText} />
