@@ -1,5 +1,6 @@
 import React from "react";
 import gsLogo from "./assets/GSLogo.svg";
+import gsLogoMarkup from "./assets/GSLogo.svg?raw";
 
 const SCRAMBLE_DURATION_MS = 1600;
 const SCRAMBLE_STAGGER_MS = 520;
@@ -27,6 +28,10 @@ const phrases = [
     holdMs: 3000,
   },
 ];
+
+const WORDMARK_PATH_MARKUP = (gsLogoMarkup.match(/<path[^>]+>/g) ?? [])
+  .filter((_, index) => index !== 9)
+  .join("");
 
 function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
@@ -161,6 +166,10 @@ function getDirectDrawProgress(elapsed) {
   return INTRO_EASE_DISTANCE + (linearElapsed / linearDuration) * linearDistance;
 }
 
+function LogoWordmarkArtwork({ className }) {
+  return <g className={className} dangerouslySetInnerHTML={{ __html: WORDMARK_PATH_MARKUP }} />;
+}
+
 function IntroLogo({ onComplete }) {
   const pathRef = React.useRef(null);
   const rafRef = React.useRef(0);
@@ -207,7 +216,7 @@ function IntroLogo({ onComplete }) {
       </defs>
       <g className="intro-lockup-motion">
         <g clipPath="url(#intro-guacamole-clip)">
-          <image className="intro-wordmark intro-wordmark--guacamole" href={gsLogo} x="0" y="0" width="1260" height="141" />
+          <LogoWordmarkArtwork className="intro-wordmark intro-wordmark--guacamole" />
         </g>
         <path
           ref={pathRef}
@@ -216,7 +225,7 @@ function IntroLogo({ onComplete }) {
           pathLength="1"
         />
         <g clipPath="url(#intro-studio-clip)">
-          <image className="intro-wordmark intro-wordmark--studio" href={gsLogo} x="0" y="0" width="1260" height="141" />
+          <LogoWordmarkArtwork className="intro-wordmark intro-wordmark--studio" />
         </g>
       </g>
     </svg>
