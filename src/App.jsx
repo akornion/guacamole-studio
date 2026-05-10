@@ -1,6 +1,5 @@
 import React from "react";
 import gsLogo from "./assets/GSLogo.svg";
-import gsLogoMarkup from "./assets/GSLogo.svg?raw";
 
 const SCRAMBLE_DURATION_MS = 1600;
 const SCRAMBLE_STAGGER_MS = 520;
@@ -28,10 +27,6 @@ const phrases = [
     holdMs: 3000,
   },
 ];
-
-const WORDMARK_PATH_MARKUP = (gsLogoMarkup.match(/<path[^>]+>/g) ?? [])
-  .filter((_, index) => index !== 9)
-  .join("");
 
 function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
@@ -166,10 +161,6 @@ function getDirectDrawProgress(elapsed) {
   return INTRO_EASE_DISTANCE + (linearElapsed / linearDuration) * linearDistance;
 }
 
-function LogoWordmarkArtwork({ className }) {
-  return <g className={className} dangerouslySetInnerHTML={{ __html: WORDMARK_PATH_MARKUP }} />;
-}
-
 function IntroLogo({ onComplete }) {
   const pathRef = React.useRef(null);
   const rafRef = React.useRef(0);
@@ -205,30 +196,26 @@ function IntroLogo({ onComplete }) {
   }, [onComplete]);
 
   return (
-    <svg className="intro-logo-compose" viewBox="0 0 1260 141" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <clipPath id="intro-guacamole-clip" clipPathUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="656.5" height="141" />
-        </clipPath>
-        <clipPath id="intro-studio-clip" clipPathUnits="userSpaceOnUse">
-          <rect x="880" y="0" width="380" height="141" />
-        </clipPath>
-      </defs>
-      <g className="intro-lockup-motion">
-        <g clipPath="url(#intro-guacamole-clip)">
-          <LogoWordmarkArtwork className="intro-wordmark intro-wordmark--guacamole" />
-        </g>
+    <>
+      <div className="intro-wordmark-stage" aria-hidden="true">
+        <span className="intro-wordmark-mask intro-wordmark-mask--guacamole">
+          <img className="intro-wordmark-image intro-wordmark-image--guacamole" src={gsLogo} alt="" draggable="false" />
+        </span>
+        <span className="intro-wordmark-mask intro-wordmark-mask--studio">
+          <img className="intro-wordmark-image intro-wordmark-image--studio" src={gsLogo} alt="" draggable="false" />
+        </span>
+      </div>
+      <svg className="intro-logo-compose" viewBox="0 0 1260 141" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g className="intro-lockup-motion">
         <path
           ref={pathRef}
           className="intro-draw-icon__path"
           d="M806.458 9.05398L789.666 8.61177L755.416 8.16956C749.061 8.16956 746.007 8.61177 743.45 8.85691C717.492 11.3468 696.944 32.0155 694.468 58.1255C694.225 60.697 694.225 63.7685 694.225 70.1614C694.225 76.5543 694.225 79.6258 694.468 82.1974C696.944 108.307 717.492 129.418 743.45 131.908C746.007 132.153 795.027 132.153 800.982 131.735C844.291 130.913 844 88.6383 844 88.6383C844 63.533 822.515 46.7384 800.781 46.7384L741.94 46.6856C734.094 46.6808 727.714 53.04 727.652 60.9326C727.59 68.8828 733.96 75.3671 741.859 75.4055L799.061 75.6795C806.726 75.718 812.919 81.9763 812.919 89.6862C812.919 97.4202 806.683 103.693 798.994 103.693H747.412"
           pathLength="1"
         />
-        <g clipPath="url(#intro-studio-clip)">
-          <LogoWordmarkArtwork className="intro-wordmark intro-wordmark--studio" />
         </g>
-      </g>
-    </svg>
+      </svg>
+    </>
   );
 }
 
